@@ -1,0 +1,44 @@
+{
+  "name": "my-desktop-clock",
+  "version": "1.0.0",
+  "description": "A simple desktop clock application built with Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "set NODE_ENV=development&& electron .",
+    "clean": "rimraf dist && rimraf node_modules",
+    "clean:dist": "rimraf dist",
+    "clean:modules": "rimraf node_modules",
+    "rebuild": "npm run clean && npm install",
+    "build": "npm run clean:dist && electron-builder --win portable",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "keywords": [
+    "electron",
+    "desktop",
+    "clock"
+  ],
+  "author": "Nafis",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^38.4.0",
+    "electron-builder": "^26.0.12",
+    "electron-reload": "^2.0.0-alpha.1",
+    "rimraf": "^5.0.1"
+  },
+  "build": {
+    "appId": "com.yourname.desktopclock",
+    "productName": "Desktop Clock",
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ],
+      "icon": "build/icon.png"
+    },
+    "directories": {
+      "output": "dist"
+    }
+  }
+}

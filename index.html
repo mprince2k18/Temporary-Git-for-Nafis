@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Desktop Clock</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="body">
+     <div id="time"></div>
+     <div id="date"></div>
+     <div id="analogClockContainer" style="display: none;">
+       <canvas id="analogClock"></canvas>
+       <div id="analogDate"></div>
+     </div>
+  </div>
+
+  <!-- Context Menu -->
+  <div id="contextMenu" class="context-menu">
+    <div class="context-menu-item" id="mainMenuBtn" onclick="window.openSettings()">
+      ⚙️ Main Menu
+    </div>
+    <div class="context-menu-divider"></div>
+    <div class="context-menu-item" id="toggleDragging">
+      ✓ Dragging Enabled
+    </div>
+    <div class="context-menu-divider"></div>
+    <div class="context-menu-item" id="minimizeBtn">
+      ⬇️ Minimize
+    </div>
+    <div class="context-menu-divider"></div>
+    <div class="context-menu-item" id="closeMenu">
+      ✕ Close Menu
+    </div>
+  </div>
+
+  <!-- Settings Popup Modal -->
+  <div id="settingsModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Clock Settings</h2>
+        <button class="modal-close" id="closeSettingsBtn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Clock Type Selector -->
+        <div class="settings-section">
+          <label>Clock Type:</label>
+          <div class="radio-group">
+            <label>
+              <input type="radio" name="clockType" value="digital" checked> Digital Clock
+            </label>
+            <label>
+              <input type="radio" name="clockType" value="analog"> Analog Clock
+            </label>
+          </div>
+        </div>
+
+        <!-- Clock Format -->
+        <div class="settings-section" id="formatSection">
+          <label>Clock Format:</label>
+          <div class="radio-group">
+            <label>
+              <input type="radio" name="clockFormat" value="12" checked> 12 Hours
+            </label>
+            <label>
+              <input type="radio" name="clockFormat" value="24"> 24 Hours
+            </label>
+          </div>
+        </div>
+
+        <!-- Theme Toggle -->
+        <div class="settings-section">
+          <label>Theme:</label>
+          <div class="radio-group">
+            <label>
+              <input type="radio" name="theme" value="dark" checked> Dark Mode
+            </label>
+            <label>
+              <input type="radio" name="theme" value="light"> Light Mode
+            </label>
+          </div>
+        </div>
+
+        <!-- Size Adjustment (Digital Clock) -->
+        <div class="settings-section" id="digitalSizeSection">
+          <label>Clock Size:</label>
+          <div class="size-control">
+            <input type="range" id="sizeSlider" min="1" max="3" value="2" step="1">
+            <div class="size-labels">
+              <span>Small</span>
+              <span>Medium</span>
+              <span>Large</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analog Clock Size Control -->
+        <div class="settings-section" id="analogSizeSection" style="display: none;">
+          <label>Analog Clock Size:</label>
+          <div class="size-control">
+            <input type="range" id="analogSizeSlider" min="1" max="3" value="2" step="1">
+            <div class="size-labels">
+              <span>Small</span>
+              <span>Medium</span>
+              <span>Large</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analog Clock Roundness Control -->
+        <div class="settings-section" id="analogRoundnessSection" style="display: none;">
+          <label>Clock Shape:</label>
+          <div class="opacity-control">
+            <input type="range" id="analogRoundnessSlider" min="30" max="100" value="100" step="5">
+            <div class="size-labels" style="margin-top: 5px;">
+              <span>Rounded</span>
+              <span></span>
+              <span>Circle</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Opacity Control -->
+        <div class="settings-section">
+          <label>Opacity:</label>
+          <div class="opacity-control">
+            <input type="range" id="opacitySlider" min="0" max="100" value="100" step="5">
+            <span id="opacityValue">100%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="saveSettingsBtn" class="btn-primary">Save</button>
+        <button id="cancelSettingsBtn" class="btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
